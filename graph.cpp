@@ -325,3 +325,18 @@ bool cgl::Graph::isComplete() {
         return true;
     }
 }
+
+bool cgl::Graph::isEmpty() {
+    if (empty) {
+        return *empty;
+    } else {
+        for (auto verts : graph) {
+            if (!verts.empty()) {
+                empty = false;
+                return false;
+            }
+        }
+        empty = true;
+        return true;
+    }
+}
