@@ -21,12 +21,13 @@
 
 #include <vector>
 #include <utility>
+#include <optional>
 
 namespace cgl {
 
     typedef std::vector< std::vector< std::pair<size_t, double> > > graph_t;
     typedef std::vector< std::vector< std::pair<size_t, int> > > intgraph_t;
-    typedef std::vector< std::vector< size_t > > ndgraph_t;  // Not weighted graph
+    typedef std::vector< std::vector< size_t > > nwgraph_t;  // Not weighted graph
 
     class Graph {
 
@@ -34,13 +35,13 @@ namespace cgl {
 
         Graph();
         Graph(const Graph &g) = default;
-        Graph(const ndgraph_t &g);
+        Graph(const nwgraph_t &g);
         Graph(const graph_t &g);
         Graph(const intgraph_t &g);
 
         void set(const graph_t &g);
         void set(const intgraph_t &g);
-        void set(const ndgraph_t &g);
+        void set(const nwgraph_t &g);
 
         void connect(size_t a, size_t b);
         void connect(size_t a, size_t b, double w);
@@ -51,7 +52,7 @@ namespace cgl {
         void removeVertex(size_t n);
 
         Graph& operator=(const Graph &g) = default;
-        Graph& operator=(const ndgraph_t &g);
+        Graph& operator=(const nwgraph_t &g);
         Graph& operator=(const graph_t &g);
         Graph& operator=(const intgraph_t &g);
 
@@ -75,14 +76,14 @@ namespace cgl {
 
         graph_t graph;
 
-        bool connected;
+        std::optional<bool> connected;
         bool weighted;
-        bool tree;
-        bool complete;
-        bool directed;
-        bool loops;
+        std::optional<bool> tree;
+        std::optional<bool> complete;
+        std::optional<bool> directed;
+        std::optional<bool> loops;
         bool null;
-        bool empty;
+        std::optional<bool> empty;
         bool integer;
 
     };
