@@ -298,3 +298,25 @@ bool cgl::Graph::isTree() const {
     else
         return (numberOfEdges() == numberOfVertices() - 1) && isConnected();
 }
+
+bool cgl::Graph::isComplete() const {
+    if (complete) {
+        return *complete;
+    } else {
+        size_t n = numberOfVertices();
+        for (auto verts : graph) {
+            std::vector<bool> checked(n, false);
+            size_t nc = n;
+            for (auto vertex : verts) {
+                if (!checked[vertex.first]) {
+                    checked[vertex.first] = true;
+                    nc--;
+                }
+            }
+
+            if (nc != 0)
+                return false;
+        }
+        return true;
+    }
+}
