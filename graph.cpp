@@ -18,6 +18,11 @@
 
 #include "graph.h"
 
+#include <vector>
+#include <utility>
+#include <optional>
+#include <algorithm>
+
 cgl::Graph::Graph() {
     edges = 0;
     connected = true;
@@ -221,4 +226,30 @@ void cgl::Graph::connecto(size_t a, size_t b, int i) {
     directed = true;
     null = false;
     empty = false;
+}
+
+void cgl::Graph::disconnect(size_t a, size_t b) {
+    auto i = std::find_if(std::begin(graph[a]), std::end(graph[a]), [b](auto p) -> bool {
+        return p.first == b;
+    });
+    if (i != std::end(graph[a]))
+        graph[a].erase(i);
+
+    i = std::find_if(std::begin(graph[b]), std::end(graph[b]), [a](auto p) -> bool {
+        return p.first == a;
+    });
+    if (i != std::end(graph[a]))
+        graph[a].erase(i);
+
+
+    if (connected && *connected)
+        connected = std::nullopt;
+    if (tree && *tree)
+        tree = false;
+    else if (tree)
+        tree = std::nullopt;
+    complete = false;
+    if (a == b)
+        loops = std::nullopt;
+    empty = std::nullopt;
 }
