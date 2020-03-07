@@ -291,3 +291,7 @@ void cgl::Graph::removeVertex(size_t n) {
     if (loops && *loops)
         loops = std::nullopt;
 }
+
+bool cgl::Graph::isTree() const {
+    return (numberOfEdges() == numberOfVertices() - 1) && isConnected();
+}
