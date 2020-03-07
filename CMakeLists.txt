@@ -3,4 +3,4 @@ project(cppgraphlib)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_library(cppgraphlib library.cpp library.h)
+add_library(cppgraphlib graph.cpp graph.h)
