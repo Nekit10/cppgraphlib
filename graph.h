@@ -57,7 +57,7 @@ namespace cgl {
         Graph& operator=(const intgraph_t &g);
 
         size_t numberOfVertices() const;
-        size_t numberOfEdges() const;
+        size_t numberOfEdges() const;  // Complexity: O(n*m)
 
         graph_t getGraph() const;
         graph_t::value_type connectedWith(size_t n);
@@ -75,6 +75,8 @@ namespace cgl {
     protected:
 
         graph_t graph;
+
+        std::optional<size_t> edges;
 
         std::optional<bool> connected;
         bool weighted;
