@@ -19,6 +19,7 @@
 #include "graph.h"
 
 cgl::Graph::Graph() {
+    edges = 0;
     connected = true;
     weighted = false;
     tree = true;
@@ -98,4 +99,24 @@ cgl::graph_t cgl::Graph::getGraph() const {
 
 std::vector<std::pair<size_t, double>> cgl::Graph::connectedWith(size_t n) {
     return graph[n];
+}
+
+size_t cgl::Graph::numberOfVertices() const {
+    return graph.size();
+}
+
+size_t cgl::Graph::numberOfEdges() const {
+    if (edges) {
+        return *edges;
+    } else {
+        int c = 0;
+        for (auto i = std::begin(graph); i != std::end(graph); ++i) {
+            int ver = i - std::begin(graph);
+            for (auto j = std::begin(*i); j != std::end(*i); ++j) {
+                if (j->first >= ver)
+                    c++;
+            }
+        }
+        return c;
+    }
 }
