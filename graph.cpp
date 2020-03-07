@@ -132,3 +132,21 @@ bool cgl::Graph::isNull() const {
 bool cgl::Graph::isInteger() const {
     return integer;
 }
+
+void cgl::Graph::connect(size_t a, size_t b) {
+    graph[a].emplace_back(b, 1);
+    graph[b].emplace_back(a, 1);
+}
+
+void cgl::Graph::connect(size_t a, size_t b, double w) {
+    graph[a].emplace_back(b, w);
+    graph[b].emplace_back(a, w);
+    weighted = true;
+    integer = false;
+}
+
+void cgl::Graph::connect(size_t a, size_t b, int i) {
+    graph[a].emplace_back(b, i);
+    graph[b].emplace_back(a, i);
+    weighted = true;
+}
