@@ -136,35 +136,89 @@ bool cgl::Graph::isInteger() const {
 void cgl::Graph::connect(size_t a, size_t b) {
     graph[a].emplace_back(b, 1);
     graph[b].emplace_back(a, 1);
+    if (connected && !*connected)
+        connected = std::nullopt;
+    if (tree && *tree)
+        tree = false;
+    else if (tree)
+        tree = std::nullopt;
+    complete = std::nullopt;
+    null = false;
+    empty = false;
 }
 
 void cgl::Graph::connect(size_t a, size_t b, double w) {
     graph[a].emplace_back(b, w);
     graph[b].emplace_back(a, w);
+    if (connected && !*connected)
+        connected = std::nullopt;
+    if (tree && *tree)
+        tree = false;
+    else if (tree)
+        tree = std::nullopt;
+    complete = std::nullopt;
     weighted = true;
     integer = false;
+    null = false;
+    empty = false;
 }
 
 void cgl::Graph::connect(size_t a, size_t b, int i) {
     graph[a].emplace_back(b, i);
     graph[b].emplace_back(a, i);
+    if (connected && !*connected)
+        connected = std::nullopt;
+    if (tree && *tree)
+        tree = false;
+    else if (tree)
+        tree = std::nullopt;
+    complete = std::nullopt;
     weighted = true;
+    null = false;
+    empty = false;
 }
 
 void cgl::Graph::connecto(size_t a, size_t b) {
     graph[a].emplace_back(b, 1);
+    if (connected && !*connected)
+        connected = std::nullopt;
+    if (tree && *tree)
+        tree = false;
+    else if (tree)
+        tree = std::nullopt;
+    complete = std::nullopt;
     directed = true;
+    null = false;
+    empty = false;
 }
 
 void cgl::Graph::connecto(size_t a, size_t b, double w) {
     graph[a].emplace_back(b, w);
+    if (connected && !*connected)
+        connected = std::nullopt;
+    if (tree && *tree)
+        tree = false;
+    else if (tree)
+        tree = std::nullopt;
+    complete = std::nullopt;
     weighted = true;
     integer = false;
     directed = true;
+    null = false;
+    empty = false;
 }
 
 void cgl::Graph::connecto(size_t a, size_t b, int i) {
     graph[a].emplace_back(b, i);
+    if (connected && !*connected)
+        connected = std::nullopt;
+    if (tree && *tree)
+        tree = false;
+    else if (tree)
+        tree = std::nullopt;
+    complete = std::nullopt;
     weighted = true;
     directed = true;
+    null = false;
+    empty = false;
 }
