@@ -150,3 +150,21 @@ void cgl::Graph::connect(size_t a, size_t b, int i) {
     graph[b].emplace_back(a, i);
     weighted = true;
 }
+
+void cgl::Graph::connecto(size_t a, size_t b) {
+    graph[a].emplace_back(b, 1);
+    directed = true;
+}
+
+void cgl::Graph::connecto(size_t a, size_t b, double w) {
+    graph[a].emplace_back(b, w);
+    weighted = true;
+    integer = false;
+    directed = true;
+}
+
+void cgl::Graph::connecto(size_t a, size_t b, int i) {
+    graph[a].emplace_back(b, i);
+    weighted = true;
+    directed = true;
+}

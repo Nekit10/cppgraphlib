@@ -46,6 +46,9 @@ namespace cgl {
         void connect(size_t a, size_t b);
         void connect(size_t a, size_t b, double w);
         void connect(size_t a, size_t b, int i);
+        void connecto(size_t a, size_t b);
+        void connecto(size_t a, size_t b, double w);
+        void connecto(size_t a, size_t b, int i);
         void disconnect(size_t a, size_t b);
         void addVertex();
         void addVertices(size_t n);
