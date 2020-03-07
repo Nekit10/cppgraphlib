@@ -120,3 +120,15 @@ size_t cgl::Graph::numberOfEdges() const {
         return c;
     }
 }
+
+bool cgl::Graph::isWeighted() const {
+    return weighted;
+}
+
+bool cgl::Graph::isNull() const {
+    return null;
+}
+
+bool cgl::Graph::isInteger() const {
+    return integer;
+}
