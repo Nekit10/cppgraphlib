@@ -253,3 +253,17 @@ void cgl::Graph::disconnect(size_t a, size_t b) {
         loops = std::nullopt;
     empty = std::nullopt;
 }
+
+void cgl::Graph::addVertex() {
+    addVertices(1);
+}
+
+void cgl::Graph::addVertices(size_t n) {
+    size_t gsize = graph.size() + n;
+    graph.resize(gsize);
+
+    connected = (gsize == 1) || (gsize == 0);
+    tree = (gsize == 1) || (gsize == 0);
+    complete = (gsize == 1) || (gsize == 0);
+    null = gsize == 0;
+}
