@@ -1,0 +1,6 @@
+#ifndef CPPGRAPHLIB_LIBRARY_H
+#define CPPGRAPHLIB_LIBRARY_H
+
+void hello();
+
+#endif //CPPGRAPHLIB_LIBRARY_H
