@@ -64,3 +64,15 @@ void cgl::Graph::set(const cgl::nwgraph_t &g) {
     null = n == 0;
     integer = true;
 }
+
+cgl::Graph::Graph(const cgl::nwgraph_t &g) {
+    set(g);
+}
+
+cgl::Graph::Graph(const cgl::graph_t &g) {
+    set(g);
+}
+
+cgl::Graph::Graph(const cgl::intgraph_t &g) {
+    set(g);
+}
