@@ -97,7 +97,7 @@ cgl::graph_t cgl::Graph::getGraph() const {
     return graph;
 }
 
-std::vector<std::pair<size_t, double>> cgl::Graph::connectedWith(size_t n) {
+std::vector<std::pair<size_t, double>> cgl::Graph::connectedWith(size_t n) const {
     return graph[n];
 }
 
