@@ -43,6 +43,8 @@ namespace cgl {
         void set(const ndgraph_t &g);
 
         void connect(size_t a, size_t b);
+        void connect(size_t a, size_t b, double w);
+        void connect(size_t a, size_t b, int i);
         void disconnect(size_t a, size_t b);
         void addVertex();
         void addVertices(size_t n);
@@ -67,6 +69,7 @@ namespace cgl {
         bool isEmpty() const;
         bool isDirected() const;
         bool hasLoops() const;
+        bool isInteger() const;  // Does it have double-typed weights of edges
 
     protected:
 
@@ -80,6 +83,7 @@ namespace cgl {
         bool loops;
         bool null;
         bool empty;
+        bool integer;
 
     };
 

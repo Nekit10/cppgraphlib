@@ -27,4 +27,5 @@ cgl::Graph::Graph() {
     loops = false;
     null = true;
     empty = true;
+    integer = true;
 }
