@@ -29,3 +29,38 @@ cgl::Graph::Graph() {
     empty = true;
     integer = true;
 }
+
+void cgl::Graph::set(const cgl::graph_t &g) {
+    graph = g;
+    weighted = true;
+    null = g.empty();
+    integer = false;
+}
+
+void cgl::Graph::set(const cgl::intgraph_t &g) {
+    size_t n = g.size();
+    for (int i = 0; i < n; ++i) {
+        size_t con = g[i].size();
+        for (int j = 0; j < con; ++j) {
+            graph[i].emplace_back(g[i][j].first, (double) g[i][j].second);
+        }
+    }
+
+    weighted = true;
+    null = n == 0;
+    integer = true;
+}
+
+void cgl::Graph::set(const cgl::nwgraph_t &g) {
+    size_t n = g.size();
+    for (int i = 0; i < n; ++i) {
+        size_t con = g[i].size();
+        for (int j = 0; j < con; ++j) {
+            graph[i].emplace_back(g[i][j], 1.0);
+        }
+    }
+
+    weighted = false;
+    null = n == 0;
+    integer = true;
+}
