@@ -56,21 +56,21 @@ namespace cgl {
         Graph& operator=(const graph_t &g);
         Graph& operator=(const intgraph_t &g);
 
-        size_t numberOfVertices() const;
-        size_t numberOfEdges() const;  // Complexity: O(n*m)
+        [[nodiscard]] size_t numberOfVertices() const;
+        [[nodiscard]] size_t numberOfEdges() const;  // Complexity: O(n*m)
 
-        graph_t getGraph() const;
-        graph_t::value_type connectedWith(size_t n);
+        [[nodiscard]] graph_t getGraph() const;
+        [[nodiscard]] graph_t::value_type connectedWith(size_t n) const;
 
-        bool isConnected() const;
-        bool isWeighted() const;
-        bool isTree() const;
-        bool isComplete() const;
-        bool isNull() const;
-        bool isEmpty() const;
-        bool isDirected() const;
-        bool hasLoops() const;
-        bool isInteger() const;  // Does it have double-typed weights of edges
+        [[nodiscard]] bool isConnected() const;
+        [[nodiscard]] bool isWeighted() const;
+        [[nodiscard]] bool isTree() const;
+        [[nodiscard]] bool isComplete() const;
+        [[nodiscard]] bool isNull() const;
+        [[nodiscard]] bool isEmpty() const;
+        [[nodiscard]] bool isDirected() const;
+        [[nodiscard]] bool hasLoops() const;
+        [[nodiscard]] bool isInteger() const;  // Does it have double-typed weights of edges
 
     protected:
 
