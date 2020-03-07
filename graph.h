@@ -65,15 +65,15 @@ namespace cgl {
         [[nodiscard]] graph_t getGraph() const;
         [[nodiscard]] graph_t::value_type connectedWith(size_t n) const;
 
-        [[nodiscard]] bool isConnected() const;
-        [[nodiscard]] bool isWeighted() const;
-        [[nodiscard]] bool isTree() const;
-        [[nodiscard]] bool isComplete() const;
-        [[nodiscard]] bool isNull() const;
-        [[nodiscard]] bool isEmpty() const;
-        [[nodiscard]] bool isDirected() const;
-        [[nodiscard]] bool hasLoops() const;
-        [[nodiscard]] bool isInteger() const;  // Does it have double-typed weights of edges
+        [[nodiscard]] bool isConnected();
+        [[nodiscard]] bool isWeighted();
+        [[nodiscard]] bool isTree();
+        [[nodiscard]] bool isComplete();
+        [[nodiscard]] bool isNull();
+        [[nodiscard]] bool isEmpty();
+        [[nodiscard]] bool isDirected();
+        [[nodiscard]] bool hasLoops();
+        [[nodiscard]] bool isInteger();  // Does it have double-typed weights of edges
 
     protected:
 

@@ -126,15 +126,15 @@ size_t cgl::Graph::numberOfEdges() const {
     }
 }
 
-bool cgl::Graph::isWeighted() const {
+bool cgl::Graph::isWeighted() {
     return weighted;
 }
 
-bool cgl::Graph::isNull() const {
+bool cgl::Graph::isNull() {
     return null;
 }
 
-bool cgl::Graph::isInteger() const {
+bool cgl::Graph::isInteger() {
     return integer;
 }
 
@@ -299,7 +299,7 @@ bool cgl::Graph::isTree() const {
         return (numberOfEdges() == numberOfVertices() - 1) && isConnected();
 }
 
-bool cgl::Graph::isComplete() const {
+bool cgl::Graph::isComplete() {
     if (complete) {
         return *complete;
     } else {
