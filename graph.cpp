@@ -91,3 +91,11 @@ cgl::Graph &cgl::Graph::operator=(const cgl::intgraph_t &g) {
     set(g);
     return *this;
 }
+
+cgl::graph_t cgl::Graph::getGraph() const {
+    return graph;
+}
+
+std::vector<std::pair<size_t, double>> cgl::Graph::connectedWith(size_t n) {
+    return graph[n];
+}
