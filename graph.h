@@ -48,7 +48,7 @@ namespace cgl {
         void addVertices(size_t n);
         void removeVertex(size_t n);
 
-        Graph& operator=(const Graph &g);
+        Graph& operator=(const Graph &g) = default;
         Graph& operator=(const ndgraph_t &g);
         Graph& operator=(const graph_t &g);
         Graph& operator=(const intgraph_t &g);
