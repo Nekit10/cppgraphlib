@@ -76,3 +76,18 @@ cgl::Graph::Graph(const cgl::graph_t &g) {
 cgl::Graph::Graph(const cgl::intgraph_t &g) {
     set(g);
 }
+
+cgl::Graph &cgl::Graph::operator=(const cgl::nwgraph_t &g) {
+    set(g);
+    return *this;
+}
+
+cgl::Graph &cgl::Graph::operator=(const cgl::graph_t &g) {
+    set(g);
+    return *this;
+}
+
+cgl::Graph &cgl::Graph::operator=(const cgl::intgraph_t &g) {
+    set(g);
+    return *this;
+}
