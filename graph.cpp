@@ -267,3 +267,27 @@ void cgl::Graph::addVertices(size_t n) {
     complete = (gsize == 1) || (gsize == 0);
     null = gsize == 0;
 }
+
+void cgl::Graph::removeVertex(size_t n) {
+    graph.erase(graph.begin() + n);
+    for (auto i = std::begin(graph); i != std::end(graph); ++i) {
+        for (auto j = std::begin(*i); j != std::end(*i); ++j) {
+            if (j->first == n)
+                i->erase(j--);
+            else if (j->first > n)
+                --j->first;
+        }
+    }
+
+    if (connected && !*connected)
+        connected = std::nullopt;
+    if (tree && !*tree)
+        tree = std::nullopt;
+    if (complete && !*complete)
+        complete = std::nullopt;
+    null = graph.empty();
+    if (empty && !*empty)
+        empty = std::nullopt;
+    if (loops && *loops)
+        loops = std::nullopt;
+}
