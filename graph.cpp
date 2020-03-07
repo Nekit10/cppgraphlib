@@ -316,9 +316,12 @@ bool cgl::Graph::isComplete() {
                 }
             }
 
-            if (nc != 0)
+            if (nc != 0) {
+                complete = false;
                 return false;
+            }
         }
+        complete = true;
         return true;
     }
 }
