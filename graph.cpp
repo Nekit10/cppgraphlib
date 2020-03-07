@@ -17,3 +17,14 @@
  */
 
 #include "graph.h"
+
+cgl::Graph::Graph() {
+    connected = true;
+    weighted = false;
+    tree = true;
+    complete = true;
+    directed = false;
+    loops = false;
+    null = true;
+    empty = true;
+}
