@@ -33,7 +33,7 @@ namespace cgl {
     public:
 
         Graph();
-        Graph(const Graph &g);
+        Graph(const Graph &g) = default;
         Graph(const ndgraph_t &g);
         Graph(const graph_t &g);
         Graph(const intgraph_t &g);
