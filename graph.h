@@ -29,15 +29,15 @@ namespace cgl {
     typedef std::vector< std::vector< std::pair<size_t, int> > > intgraph_t;
     typedef std::vector< std::vector< size_t > > nwgraph_t;  // Not weighted graph
 
-    class Graph {
+    class graph {
 
     public:
 
-        Graph();
-        Graph(const Graph &g) = default;
-        Graph(const nwgraph_t &g);
-        Graph(const graph_t &g);
-        Graph(const intgraph_t &g);
+        graph();
+        graph(const graph &g) = default;
+        graph(const nwgraph_t &g);
+        graph(const graph_t &g);
+        graph(const intgraph_t &g);
 
         void set(const graph_t &g);
         void set(const intgraph_t &g);
@@ -54,10 +54,10 @@ namespace cgl {
         void addVertices(size_t n);
         void removeVertex(size_t n);  // Complexity: O(n*m)
 
-        Graph& operator=(const Graph &g) = default;
-        Graph& operator=(const nwgraph_t &g);
-        Graph& operator=(const graph_t &g);
-        Graph& operator=(const intgraph_t &g);
+        graph& operator=(const graph &g) = default;
+        graph& operator=(const nwgraph_t &g);
+        graph& operator=(const graph_t &g);
+        graph& operator=(const intgraph_t &g);
 
         [[nodiscard]] size_t numberOfVertices() const;
         [[nodiscard]] size_t numberOfEdges() const;  // Complexity: O(n*m)
@@ -93,8 +93,8 @@ namespace cgl {
 
     };
 
-    Graph graphByAdjacencyMatrix(const std::vector< std::vector<double> >& m);
-    Graph emptyGraph(size_t n);
+    graph graphByAdjacencyMatrix(const std::vector< std::vector<double> >& m);
+    graph emptyGraph(size_t n);
 
 }
 

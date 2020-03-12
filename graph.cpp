@@ -25,7 +25,7 @@
 #include <queue>
 #include <stack>
 
-cgl::Graph::Graph() {
+cgl::graph::graph() {
     edges = 0;
     connected = true;
     weighted = false;
@@ -38,14 +38,14 @@ cgl::Graph::Graph() {
     integer = true;
 }
 
-void cgl::Graph::set(const cgl::graph_t &g) {
+void cgl::graph::set(const cgl::graph_t &g) {
     graph = g;
     weighted = true;
     null = g.empty();
     integer = false;
 }
 
-void cgl::Graph::set(const cgl::intgraph_t &g) {
+void cgl::graph::set(const cgl::intgraph_t &g) {
     size_t n = g.size();
     for (int i = 0; i < n; ++i) {
         size_t con = g[i].size();
@@ -59,7 +59,7 @@ void cgl::Graph::set(const cgl::intgraph_t &g) {
     integer = true;
 }
 
-void cgl::Graph::set(const cgl::nwgraph_t &g) {
+void cgl::graph::set(const cgl::nwgraph_t &g) {
     size_t n = g.size();
     for (int i = 0; i < n; ++i) {
         size_t con = g[i].size();
@@ -73,46 +73,46 @@ void cgl::Graph::set(const cgl::nwgraph_t &g) {
     integer = true;
 }
 
-cgl::Graph::Graph(const cgl::nwgraph_t &g) {
+cgl::graph::graph(const cgl::nwgraph_t &g) {
     set(g);
 }
 
-cgl::Graph::Graph(const cgl::graph_t &g) {
+cgl::graph::graph(const cgl::graph_t &g) {
     set(g);
 }
 
-cgl::Graph::Graph(const cgl::intgraph_t &g) {
+cgl::graph::graph(const cgl::intgraph_t &g) {
     set(g);
 }
 
-cgl::Graph &cgl::Graph::operator=(const cgl::nwgraph_t &g) {
-    set(g);
-    return *this;
-}
-
-cgl::Graph &cgl::Graph::operator=(const cgl::graph_t &g) {
+cgl::graph &cgl::graph::operator=(const cgl::nwgraph_t &g) {
     set(g);
     return *this;
 }
 
-cgl::Graph &cgl::Graph::operator=(const cgl::intgraph_t &g) {
+cgl::graph &cgl::graph::operator=(const cgl::graph_t &g) {
     set(g);
     return *this;
 }
 
-cgl::graph_t cgl::Graph::getGraph() const {
+cgl::graph &cgl::graph::operator=(const cgl::intgraph_t &g) {
+    set(g);
+    return *this;
+}
+
+cgl::graph_t cgl::graph::getGraph() const {
     return graph;
 }
 
-std::vector<std::pair<size_t, double>> cgl::Graph::connectedWith(size_t n) const {
+std::vector<std::pair<size_t, double>> cgl::graph::connectedWith(size_t n) const {
     return graph[n];
 }
 
-size_t cgl::Graph::numberOfVertices() const {
+size_t cgl::graph::numberOfVertices() const {
     return graph.size();
 }
 
-size_t cgl::Graph::numberOfEdges() const {
+size_t cgl::graph::numberOfEdges() const {
     if (edges) {
         return *edges;
     } else {
@@ -128,19 +128,19 @@ size_t cgl::Graph::numberOfEdges() const {
     }
 }
 
-bool cgl::Graph::isWeighted() {
+bool cgl::graph::isWeighted() {
     return weighted;
 }
 
-bool cgl::Graph::isNull() {
+bool cgl::graph::isNull() {
     return null;
 }
 
-bool cgl::Graph::isInteger() {
+bool cgl::graph::isInteger() {
     return integer;
 }
 
-void cgl::Graph::connect(size_t a, size_t b) {
+void cgl::graph::connect(size_t a, size_t b) {
     graph[a].emplace_back(b, 1);
     graph[b].emplace_back(a, 1);
     if (connected && !*connected)
@@ -154,7 +154,7 @@ void cgl::Graph::connect(size_t a, size_t b) {
     empty = false;
 }
 
-void cgl::Graph::connect(size_t a, size_t b, double w) {
+void cgl::graph::connect(size_t a, size_t b, double w) {
     graph[a].emplace_back(b, w);
     graph[b].emplace_back(a, w);
     if (connected && !*connected)
@@ -170,7 +170,7 @@ void cgl::Graph::connect(size_t a, size_t b, double w) {
     empty = false;
 }
 
-void cgl::Graph::connect(size_t a, size_t b, int i) {
+void cgl::graph::connect(size_t a, size_t b, int i) {
     graph[a].emplace_back(b, i);
     graph[b].emplace_back(a, i);
     if (connected && !*connected)
@@ -185,7 +185,7 @@ void cgl::Graph::connect(size_t a, size_t b, int i) {
     empty = false;
 }
 
-void cgl::Graph::connecto(size_t a, size_t b) {
+void cgl::graph::connecto(size_t a, size_t b) {
     graph[a].emplace_back(b, 1);
     if (connected && !*connected)
         connected = std::nullopt;
@@ -199,7 +199,7 @@ void cgl::Graph::connecto(size_t a, size_t b) {
     empty = false;
 }
 
-void cgl::Graph::connecto(size_t a, size_t b, double w) {
+void cgl::graph::connecto(size_t a, size_t b, double w) {
     graph[a].emplace_back(b, w);
     if (connected && !*connected)
         connected = std::nullopt;
@@ -215,7 +215,7 @@ void cgl::Graph::connecto(size_t a, size_t b, double w) {
     empty = false;
 }
 
-void cgl::Graph::connecto(size_t a, size_t b, int i) {
+void cgl::graph::connecto(size_t a, size_t b, int i) {
     graph[a].emplace_back(b, i);
     if (connected && !*connected)
         connected = std::nullopt;
@@ -230,7 +230,7 @@ void cgl::Graph::connecto(size_t a, size_t b, int i) {
     empty = false;
 }
 
-void cgl::Graph::disconnect(size_t a, size_t b) {
+void cgl::graph::disconnect(size_t a, size_t b) {
     auto i = std::find_if(std::begin(graph[a]), std::end(graph[a]), [b](auto p) -> bool {
         return p.first == b;
     });
@@ -256,11 +256,11 @@ void cgl::Graph::disconnect(size_t a, size_t b) {
     empty = std::nullopt;
 }
 
-void cgl::Graph::addVertex() {
+void cgl::graph::addVertex() {
     addVertices(1);
 }
 
-void cgl::Graph::addVertices(size_t n) {
+void cgl::graph::addVertices(size_t n) {
     size_t gsize = graph.size() + n;
     graph.resize(gsize);
 
@@ -270,7 +270,7 @@ void cgl::Graph::addVertices(size_t n) {
     null = gsize == 0;
 }
 
-void cgl::Graph::removeVertex(size_t n) {
+void cgl::graph::removeVertex(size_t n) {
     graph.erase(graph.begin() + n);
     for (auto i = std::begin(graph); i != std::end(graph); ++i) {
         for (auto j = std::begin(*i); j != std::end(*i); ++j) {
@@ -294,7 +294,7 @@ void cgl::Graph::removeVertex(size_t n) {
         loops = std::nullopt;
 }
 
-bool cgl::Graph::isTree() {
+bool cgl::graph::isTree() {
     if (tree) {
         return *tree;
     } else {
@@ -303,7 +303,7 @@ bool cgl::Graph::isTree() {
     }
 }
 
-bool cgl::Graph::isComplete() {
+bool cgl::graph::isComplete() {
     if (complete) {
         return *complete;
     } else {
@@ -328,7 +328,7 @@ bool cgl::Graph::isComplete() {
     }
 }
 
-bool cgl::Graph::isEmpty() {
+bool cgl::graph::isEmpty() {
     if (empty) {
         return *empty;
     } else {
@@ -343,7 +343,7 @@ bool cgl::Graph::isEmpty() {
     }
 }
 
-bool cgl::Graph::isDirected() {
+bool cgl::graph::isDirected() {
     if (directed) {
         return *directed;
     } else {
@@ -364,7 +364,7 @@ bool cgl::Graph::isDirected() {
     }
 }
 
-bool cgl::Graph::isConnected() {
+bool cgl::graph::isConnected() {
     if (!connected) {
         size_t s = 0;
         size_t n = numberOfVertices();
@@ -391,7 +391,7 @@ bool cgl::Graph::isConnected() {
     return *connected;
 }
 
-bool cgl::Graph::hasLoops() {
+bool cgl::graph::hasLoops() {
     if (!loops) {
         size_t n = numberOfVertices();
         std::vector<bool> color(n, false);
@@ -423,7 +423,7 @@ bool cgl::Graph::hasLoops() {
     return *loops;
 }
 
-cgl::Graph cgl::graphByAdjacencyMatrix(const std::vector<std::vector<double>>& m) {
+cgl::graph cgl::graphByAdjacencyMatrix(const std::vector<std::vector<double>>& m) {
     cgl::graph_t graph;
     size_t n = m.size();
     for (int i = 0; i < n; ++i) {
@@ -432,11 +432,11 @@ cgl::Graph cgl::graphByAdjacencyMatrix(const std::vector<std::vector<double>>& m
                 graph[i].emplace_back(j, m[i][j]);
         }
     }
-    return cgl::Graph(graph);
+    return cgl::graph(graph);
 }
 
-cgl::Graph cgl::emptyGraph(size_t n) {
-    cgl::Graph graph;
+cgl::graph cgl::emptyGraph(size_t n) {
+    cgl::graph graph;
     graph.addVertices(n);
     return graph;
 }
