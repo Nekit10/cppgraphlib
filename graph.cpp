@@ -350,7 +350,9 @@ bool cgl::Graph::isDirected() {
         for (auto i = std::begin(graph); i != std::end(graph); ++i) {
             for (auto vertex : *i) {
                 size_t iv = i - std::begin(graph);
-                auto pos = std::find(std::begin(graph[vertex.first]), std::end(graph[vertex.first]), iv);
+                auto pos = std::find_if(std::begin(graph[vertex.first]), std::end(graph[vertex.first]), [iv](const auto &a) -> bool {
+                    return a.first == iv;
+                });
                 if (pos == std::end(graph[vertex.first])) {
                     directed = true;
                     return true;
