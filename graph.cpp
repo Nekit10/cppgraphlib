@@ -382,5 +382,6 @@ bool cgl::Graph::isConnected() {
             }
         }
     }
-    return n == 0;
+    connected = n == 0;
+    return *connected;
 }
