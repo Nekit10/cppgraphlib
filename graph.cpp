@@ -362,26 +362,28 @@ bool cgl::Graph::isDirected() {
 }
 
 bool cgl::Graph::isConnected() {
-    size_t s = 0;
-    size_t n = numberOfVertices();
-    std::vector<bool> v(n, false);
-    v[s] = true;
-    size_t nv = n - 1;
+    if (!connected) {
+        size_t s = 0;
+        size_t n = numberOfVertices();
+        std::vector<bool> v(n, false);
+        v[s] = true;
+        size_t nv = n - 1;
 
 
-    std::queue<int> verts;
-    verts.push(s);
-    while (!verts.emplace()) {
-        size_t vertex = verts.front();
-        verts.pop();
+        std::queue<int> verts;
+        verts.push(s);
+        while (!verts.emplace()) {
+            size_t vertex = verts.front();
+            verts.pop();
 
-        for (auto &edge : graph[vertex]) {
-            if (!v[edge.first]) {
-                nv--;
-                v[edge.first] = true;
+            for (auto &edge : graph[vertex]) {
+                if (!v[edge.first]) {
+                    nv--;
+                    v[edge.first] = true;
+                }
             }
         }
+        connected = n == 0;
     }
-    connected = n == 0;
     return *connected;
 }
