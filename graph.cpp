@@ -23,6 +23,7 @@
 #include <optional>
 #include <algorithm>
 #include <queue>
+#include <stack>
 
 cgl::Graph::Graph() {
     edges = 0;
@@ -386,4 +387,36 @@ bool cgl::Graph::isConnected() {
         connected = n == 0;
     }
     return *connected;
+}
+
+bool cgl::Graph::hasLoops() {
+    if (!loops) {
+        size_t n = numberOfVertices();
+        std::vector<bool> color(n, false);
+
+        std::stack<int> stack;
+        for (size_t i = 0; i < n; ++i) {
+            if (!color[i]) {
+                stack.push(i);
+                while (!stack.empty()) {
+                    size_t vertex = stack.top();
+                    stack.pop();
+
+                    color[vertex] = true;
+                    for (auto &ov : graph[vertex]) {
+                        if (color[ov.first]) {
+                            loops = true;
+                            return true;
+                        } else {
+                            for (auto it = std::rbegin(graph[vertex]); it != std::rend(graph[vertex]); ++it) {
+                                stack.push(it->first);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        loops = false;
+    }
+    return *loops;
 }
