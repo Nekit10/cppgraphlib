@@ -420,3 +420,21 @@ bool cgl::Graph::hasLoops() {
     }
     return *loops;
 }
+
+cgl::Graph cgl::graphByAdjacencyMatrix(const std::vector<std::vector<double>>& m) {
+    cgl::graph_t graph;
+    size_t n = m.size();
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if (m[i][j] != 0)
+                graph[i].emplace_back(j, m[i][j]);
+        }
+    }
+    return cgl::Graph(graph);
+}
+
+cgl::Graph cgl::emptyGraph(size_t n) {
+    cgl::Graph graph;
+    graph.addVertices(n);
+    return graph;
+}

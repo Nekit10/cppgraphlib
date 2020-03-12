@@ -93,7 +93,7 @@ namespace cgl {
 
     };
 
-    Graph graphByAdjacencyMatrix(std::vector< std::vector<int> > m);
+    Graph graphByAdjacencyMatrix(const std::vector< std::vector<double> >& m);
     Graph emptyGraph(size_t n);
 
 }
