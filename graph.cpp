@@ -22,6 +22,7 @@
 #include <utility>
 #include <optional>
 #include <algorithm>
+#include <queue>
 
 cgl::Graph::Graph() {
     edges = 0;
@@ -358,4 +359,28 @@ bool cgl::Graph::isDirected() {
         directed = false;
         return false;
     }
+}
+
+bool cgl::Graph::isConnected() {
+    size_t s = 0;
+    size_t n = numberOfVertices();
+    std::vector<bool> v(n, false);
+    v[s] = true;
+    size_t nv = n - 1;
+
+
+    std::queue<int> verts;
+    verts.push(s);
+    while (!verts.emplace()) {
+        size_t vertex = verts.front();
+        verts.pop();
+
+        for (auto &edge : graph[vertex]) {
+            if (!v[edge.first]) {
+                nv--;
+                v[edge.first] = true;
+            }
+        }
+    }
+    return n == 0;
 }
