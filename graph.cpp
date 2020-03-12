@@ -340,3 +340,22 @@ bool cgl::Graph::isEmpty() {
         return true;
     }
 }
+
+bool cgl::Graph::isDirected() {
+    if (directed) {
+        return *directed;
+    } else {
+        for (auto i = std::begin(graph); i != std::end(graph); ++i) {
+            for (auto vertex : *i) {
+                size_t iv = i - std::begin(graph);
+                auto pos = std::find(std::begin(graph[vertex.first]), std::end(graph[vertex.first]), iv);
+                if (pos == std::end(graph[vertex.first])) {
+                    directed = true;
+                    return true;
+                }
+            }
+        }
+        directed = false;
+        return false;
+    }
+}
