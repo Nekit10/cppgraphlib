@@ -49,10 +49,10 @@ namespace cgl {
         void connecto(size_t a, size_t b);
         void connecto(size_t a, size_t b, double w);
         void connecto(size_t a, size_t b, int i);
-        void disconnect(size_t a, size_t b);
+        void disconnect(size_t a, size_t b);  // Complexity: O(m)
         void addVertex();
         void addVertices(size_t n);
-        void removeVertex(size_t n);
+        void removeVertex(size_t n);  // Complexity: O(n*m)
 
         Graph& operator=(const Graph &g) = default;
         Graph& operator=(const nwgraph_t &g);
@@ -65,15 +65,15 @@ namespace cgl {
         [[nodiscard]] graph_t getGraph() const;
         [[nodiscard]] graph_t::value_type connectedWith(size_t n) const;
 
-        [[nodiscard]] bool isConnected();
-        [[nodiscard]] bool isWeighted();
-        [[nodiscard]] bool isTree();
-        [[nodiscard]] bool isComplete();
-        [[nodiscard]] bool isNull();
-        [[nodiscard]] bool isEmpty();
-        [[nodiscard]] bool isDirected();
-        [[nodiscard]] bool hasLoops();
-        [[nodiscard]] bool isInteger();  // Does it have double-typed weights of edges
+        [[nodiscard]] bool isConnected();  // Complexity: O(n + m)
+        [[nodiscard]] bool isWeighted();  // Complexity: O(1)
+        [[nodiscard]] bool isTree();  // Complexity: O(n + m)
+        [[nodiscard]] bool isComplete();  // Complexity: O(n*m)
+        [[nodiscard]] bool isNull();  // Complexity: O(1)
+        [[nodiscard]] bool isEmpty();  // Complexity: O(n)
+        [[nodiscard]] bool isDirected();  // Complexity: O(n*m^2)
+        [[nodiscard]] bool hasLoops();  // Complexity: O(n + m)
+        [[nodiscard]] bool isInteger();   // Complexity: O(1) ; Does it have double-typed weights of edges
 
     protected:
 
